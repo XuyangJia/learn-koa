@@ -7,11 +7,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
+    pass: {
         type: String,
         required: true
     },
-    password: {
+    email: {
         type: String,
         required: true
     },
@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     },
 })
 
-mongoose.connect('mongodb://localhost/douban', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true })
 .then(() => console.log('success'))
 .catch(err => console.log(err))
 
