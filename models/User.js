@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    mongoURI = require('../config/keys').mongoURI,
+    Schema = mongoose.Schema
 
 // 实例化数据模板
 const UserSchema = new Schema({
@@ -24,8 +25,10 @@ const UserSchema = new Schema({
     },
 })
 
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true })
-.then(() => console.log('success'))
-.catch(err => console.log(err))
+mongoose.connect(mongoURI, {
+        useNewUrlParser: true
+    })
+    .then(() => console.log('数据库连接成功'))
+    .catch(err => console.log(err))
 
 module.exports = User = mongoose.model('users', UserSchema)

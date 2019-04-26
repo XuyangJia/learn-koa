@@ -4,13 +4,25 @@
 const koa = require('koa'),
     router = require('koa-router')(),
     koaBody = require('koa-body'),
+    // session = require('koa-session'),
+    passport = require('koa-passport'),
     app = new koa(),
     users = require('./routes/api/users'),
     port = process.env.PORT || 5000
 
+// body parser
 app.use(koaBody())
 
-// 配置路由
+// Sessions
+// app.keys = ['secret']
+// app.use(session({}, app))
+
+// Passport
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport')(passport)
+
+// routes
 router.get('/', async ctx => ctx.body = {
     msg: 'hello Koa'
 })
